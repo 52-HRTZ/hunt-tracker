@@ -9,8 +9,8 @@ all data lives in this browser profile's IndexedDB.
 
 ```
 BUG HUNT TRACKER              HUNTING                Session saved ✓
-Program  [ Walmart   ▼ ]      01:42:31               1h 42m
-Activity [ Hunt      ▼ ]      Walmart · Hunt         September 6
+Program  [ Target  ▼ ]      01:42:31               1h 42m
+Activity [ Hunt      ▼ ]      Target · Hunt         September 6
                                                      [ START AGAIN ]
         START                     STOP
 ```
