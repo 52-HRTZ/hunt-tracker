@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Bug Hunt Tracker</title>
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body class="popup">
+  <header class="pop-head">
+    <div class="brand">
+      <span class="brand-mark">◈</span>
+      <span>BUG HUNT TRACKER</span>
+    </div>
+    <button id="open-dashboard" class="btn-ghost btn-sm" title="Open dashboard">Dashboard ↗</button>
+  </header>
+
+  <main id="main">
+    <!-- IDLE: the two selects plus START. This is the whole hot path. -->
+    <section id="view-idle" class="view" hidden>
+      <div id="saved-banner" class="saved-banner" hidden></div>
+
+      <div class="field">
+        <label for="program">Program</label>
+        <div class="with-side">
+          <select id="program"></select>
+          <button id="new-program" class="btn-sm" title="Add a program">+</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="activity">Activity</label>
+        <select id="activity"></select>
+      </div>
+
+      <button id="start" class="big-btn go">START</button>
+
+      <!-- Inline program creation: never leave the popup mid-flow. -->
+      <form id="program-form" class="inline-form" hidden>
+        <div class="field">
+          <label for="np-name">New program name</label>
+          <input id="np-name" type="text" placeholder="Enter target name" maxlength="80" autocomplete="off">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="np-platform">Platform</label>
+            <select id="np-platform"></select>
+          </div>
+          <div class="field">
+            <label for="np-url">URL (optional)</label>
+            <input id="np-url" type="text" placeholder="hackerone.com/your-program" autocomplete="off">
+          </div>
+        </div>
+        <div class="inline-actions">
+          <button type="button" id="np-cancel" class="btn-sm">Cancel</button>
+          <button type="submit" class="btn-primary btn-sm">Save program</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- RUNNING: clock, context, STOP. -->
+    <section id="view-running" class="view" hidden>
+      <div class="running-head">
+        <span class="live-dot"></span>
+        <span class="running-label">HUNTING</span>
+      </div>
+      <div id="clock" class="clock mono">00:00:00</div>
+      <div id="running-context" class="running-context"></div>
+      <div id="running-since" class="running-since dim"></div>
+
+      <button id="stop" class="big-btn stop">STOP</button>
+      <button id="discard" class="btn-ghost btn-sm discard">Discard without saving</button>
+    </section>
+  </main>
+
+  <!-- Today's numbers, always visible: the reason to keep the habit. -->
+  <section id="today" class="today">
+    <div class="today-head">
+      <span id="today-date" class="today-date"></span>
+      <span id="today-streak" class="streak"></span>
+    </div>
+    <div class="today-stats">
+      <div class="tstat"><span id="t-time" class="tstat-v mono">0m</span><span class="tstat-k">Focused</span></div>
+      <div class="tstat"><span id="t-sessions" class="tstat-v mono">0</span><span class="tstat-k">Sessions</span></div>
+      <div class="tstat"><span id="t-findings" class="tstat-v mono">0</span><span class="tstat-k">Findings</span></div>
+      <div class="tstat"><span id="t-bounty" class="tstat-v mono money">$0</span><span class="tstat-k">Paid</span></div>
+    </div>
+    <div id="today-activities" class="today-activities"></div>
+  </section>
+
+  <footer class="pop-foot">
+    <button id="add-finding" class="btn-sm">+ Finding</button>
+    <button id="open-findings" class="btn-ghost btn-sm">Findings</button>
+    <button id="open-programs" class="btn-ghost btn-sm">Programs</button>
+  </footer>
+
+  <!-- Quick finding capture: enough fields to not lose the thought, no more. -->
+  <div id="finding-sheet" class="sheet" hidden>
+    <form id="finding-form" class="sheet-inner">
+      <div class="sheet-head">
+        <h3>New finding</h3>
+        <button type="button" id="fs-close" class="btn-ghost btn-sm">✕</button>
+      </div>
+      <div class="field">
+        <label for="fs-title">Title</label>
+        <input id="fs-title" type="text" placeholder="Broken access control in Nutrition Hub" maxlength="200" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="fs-type">Vulnerability type</label>
+        <input id="fs-type" type="text" list="vuln-types" placeholder="IDOR / BOLA" autocomplete="off">
+        <datalist id="vuln-types"></datalist>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="fs-program">Program</label>
+          <select id="fs-program"></select>
+        </div>
+        <div class="field">
+          <label for="fs-severity">Severity</label>
+          <select id="fs-severity"></select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="fs-notes">Notes (optional)</label>
+        <textarea id="fs-notes" rows="2" placeholder="Endpoint, repro steps, anything you'd forget by tomorrow"></textarea>
+      </div>
+      <div class="field">
+        <label for="fs-date">Discovery date (optional)</label>
+        <input id="fs-date" type="date" autocomplete="off">
+      </div>
+      <p class="sheet-hint dim">Saved as <strong>New</strong> with no bounty. Update status and bounty later from Findings.</p>
+      <div class="inline-actions">
+        <button type="button" id="fs-cancel" class="btn-sm">Cancel</button>
+        <button type="submit" class="btn-primary btn-sm">Save finding</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

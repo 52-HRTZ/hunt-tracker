@@ -1,0 +1,164 @@
+.popup {
+  width: 340px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ----------------------------------------------------------------- head -- */
+
+.pop-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.brand {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--text-dim);
+}
+.brand-mark { color: var(--accent); font-size: 13px; }
+
+main { padding: 14px 12px 6px; }
+
+.with-side { display: flex; gap: 8px; }
+.with-side select { flex: 1; min-width: 0; }
+.with-side button { flex: 0 0 34px; padding: 0; font-size: 16px; line-height: 1; }
+
+/* ------------------------------------------------------------ big button -- */
+
+.big-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: 750;
+  letter-spacing: 0.16em;
+  border: none;
+  border-radius: var(--radius);
+  color: #fff;
+}
+.big-btn.go   { background: var(--go); }
+.big-btn.go:hover:not(:disabled)   { background: var(--go-hi); }
+.big-btn.stop { background: var(--stop); }
+.big-btn.stop:hover:not(:disabled) { background: var(--stop-hi); }
+
+/* --------------------------------------------------------------- running -- */
+
+#view-running { text-align: center; padding-top: 4px; }
+
+.running-head {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.18em; color: var(--go-hi);
+}
+.live-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--go-hi);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+.clock {
+  font-size: 40px;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  margin: 8px 0 4px;
+  color: var(--text);
+}
+.running-context { font-size: 14px; font-weight: 600; }
+.running-context .sep { color: var(--text-mute); margin: 0 6px; font-weight: 400; }
+.running-since { font-size: 11.5px; margin: 3px 0 14px; }
+.discard { width: 100%; margin-top: 8px; font-size: 11.5px; }
+
+/* ---------------------------------------------------------- saved banner -- */
+
+.saved-banner {
+  background: rgba(22, 163, 74, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.32);
+  border-radius: var(--radius-sm);
+  padding: 9px 11px;
+  margin-bottom: 13px;
+  font-size: 12.5px;
+}
+.saved-banner .ok { color: #86efac; font-weight: 650; }
+.saved-banner .meta { color: var(--text-dim); font-size: 11.5px; margin-top: 2px; }
+
+/* ----------------------------------------------------------- inline form -- */
+
+.inline-form {
+  margin-top: 14px; padding-top: 13px;
+  border-top: 1px solid var(--line-soft);
+}
+.inline-actions { display: flex; gap: 8px; justify-content: flex-end; }
+
+/* ---------------------------------------------------------------- today -- */
+
+.today {
+  margin: 8px 12px 0;
+  padding: 11px 12px;
+  background: var(--bg-raised);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+}
+.today-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 9px;
+}
+.today-date { font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-mute); }
+.streak { font-size: 11px; color: var(--warn); font-weight: 600; }
+
+.today-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.tstat { display: flex; flex-direction: column; gap: 1px; }
+.tstat-v { font-size: 15px; font-weight: 650; }
+.tstat-v.money { color: var(--money); }
+.tstat-k { font-size: 10px; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.05em; }
+
+.today-activities {
+  display: flex; flex-wrap: wrap; gap: 5px;
+  margin-top: 10px;
+}
+.today-activities:empty { display: none; }
+.act-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; color: var(--text-dim);
+  background: var(--bg-input); border: 1px solid var(--line-soft);
+  border-radius: 999px; padding: 2px 8px;
+}
+.act-chip .dot { width: 6px; height: 6px; border-radius: 50%; }
+.act-chip .v { color: var(--text); font-variant-numeric: tabular-nums; }
+
+/* ----------------------------------------------------------------- foot -- */
+
+.pop-foot {
+  display: flex; gap: 8px; align-items: center;
+  padding: 11px 12px 12px;
+}
+.pop-foot #add-finding { flex: 1; }
+
+/* ---------------------------------------------------------------- sheet -- */
+
+.sheet {
+  position: fixed; inset: 0;
+  background: rgba(5, 8, 12, 0.72);
+  display: flex; align-items: flex-end;
+  z-index: 50;
+}
+.sheet-inner {
+  width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  background: var(--bg-raised);
+  border-top: 1px solid var(--line);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 13px 12px 14px;
+}
+.sheet-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 11px; }
+.sheet-head h3 { font-size: 14px; }
+.sheet-hint { font-size: 11px; margin: 0 0 11px; }
+
+/* In a 340px popup the bottom is where the action buttons live, so a toast
+   anchored there would cover Save/Cancel. Drop it under the header instead. */
+.popup .toast {
+  top: 44px;
+  bottom: auto;
+}

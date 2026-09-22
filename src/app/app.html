@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bug Hunt Tracker</title>
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body class="app">
+  <header class="app-head">
+    <div class="app-brand">
+      <span class="brand-mark">◈</span>
+      <span class="brand-name">BUG HUNT TRACKER</span>
+    </div>
+
+    <nav class="app-nav" id="nav">
+      <button class="nav-btn" data-view="dashboard">Dashboard</button>
+      <button class="nav-btn" data-view="day">Day</button>
+      <button class="nav-btn" data-view="findings">Findings</button>
+      <button class="nav-btn" data-view="programs">Programs</button>
+      <button class="nav-btn" data-view="goals">Goals</button>
+      <button class="nav-btn" data-view="data">Data</button>
+    </nav>
+
+    <div class="app-status" id="timer-status"></div>
+  </header>
+
+  <main id="view" class="app-main">
+    <div class="empty">Loading…</div>
+  </main>
+
+  <!-- Shared datalist so every vuln-type input offers the same suggestions. -->
+  <datalist id="vuln-types-app"></datalist>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
